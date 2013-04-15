@@ -2,9 +2,26 @@ import java.awt.*;
 import java.awt.event.*;
 @SuppressWarnings("serial")
 
+/*
+ * INFO
+ * 
+ * CODING STYLE
+ * 
+ * 
+ * AUFBAU
+ * 
+ * 
+ * COPYRIGHT 
+ * ©2013 by Kim Jeker (info@kije.ch)
+ * Source available on GitHub (https://github.com/kije/KJMineSweeper)
+ * 
+ */
+
 public class ControllerClass extends Frame implements ActionListener {
 	public static KJMineSweeper mineSweeper;
+	public static KJNumberQuiz numberQuiz;
 	public Button mineSweeperButton = new Button("MineSweeper");
+	public Button numbersQuizButton = new Button("Zahlen raten");
 	
 	public ControllerClass() {
 		this.addWindowListener(new WindowAdapter() {
@@ -20,8 +37,10 @@ public class ControllerClass extends Frame implements ActionListener {
 		setLayout(new FlowLayout());
 		
 		this.mineSweeperButton.addActionListener(this);
-		
 		add(this.mineSweeperButton);
+		
+		this.numbersQuizButton.addActionListener(this);
+		add(this.numbersQuizButton);
 		
 		
 		pack();
@@ -36,6 +55,8 @@ public class ControllerClass extends Frame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == this.mineSweeperButton) {
 			mineSweeper = new KJMineSweeper("MineSweeper", 15, 15, 0.25);
+		} else if (event.getSource() == this.numbersQuizButton) {
+			// Start Number Quiz
 		}
 	}
 }
