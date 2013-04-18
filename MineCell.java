@@ -1,17 +1,20 @@
-import java.awt.Button;
+import java.awt.*;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class MineCell extends Button {
+public class MineCell extends JButton {
 
 	public boolean isMine = false;
 	protected int[] position = new int[2]; // Position im "Grid"
 	public boolean wasClicked = false;
 	public int numberOfMinesArround = 0;
 	public boolean checked = false;
+	public Dimension size = new Dimension(30,30);
 
 	public MineCell() {
 		super(); // Konstruktor der Superklasse aufrufen
-		setFocusable(false); // Nervenden baluen Rand bei jeder zelle abschalten
+		setFocusable(false); // Nervenden baluen Rand bei jeder zelle abschalten (Mac?!?)
+		this.setPreferredSize(size);
 	}
 
 	public void setPosition(int row, int colum) {
@@ -30,7 +33,7 @@ public class MineCell extends Button {
 
 	public void click() {
 		wasClicked = true;
-		setLabel((isMine ? "+" : ""+numberOfMinesArround));
+		setText((isMine ? "+" : ""+numberOfMinesArround));
 		setEnabled(false);
 	}
 }

@@ -1,5 +1,6 @@
-import java.awt.*;
+import javax.swing.*;
 import java.awt.event.*;
+import java.awt.*;
 
 @SuppressWarnings("serial") // Nervende Warnung abschalten
 
@@ -10,7 +11,7 @@ import java.awt.event.*;
  * @implements ActionListener
  * @todo AufrŠumen!!!
  */
-public class KJMineSweeper extends Frame implements ActionListener {
+public class KJMineSweeper extends JFrame implements ActionListener {
 	// Quasi-ÇKonstantenÈ
 	private static int ROWS;
 	private static int COLUMS;
@@ -125,24 +126,24 @@ public class KJMineSweeper extends Frame implements ActionListener {
 		 
 		// Zellen in der gleichen Reihe
 		if (cell.getColum() > 0) {
-			cells[3] = this.fields[cell.getRow()][cell.getColum()-1]; // Links von der Zelle
+			cells[3] = this.fields[cell.getRow()][cell.getColum()-1]; 
 		} 
 		
 		if (cell.getColum() < COLUMS-1) {
-			cells[4] = this.fields[cell.getRow()][cell.getColum()+1]; // Rechts von der Zelle
+			cells[4] = this.fields[cell.getRow()][cell.getColum()+1]; 
 		} 
 		
 		// Zellen in der Reihe unten drann
 		if (cell.getRow() < ROWS-1 && cell.getColum() > 0) {
-			cells[5] = this.fields[cell.getRow()+1][cell.getColum()-1]; // Unterhalb der Zelle
+			cells[5] = this.fields[cell.getRow()+1][cell.getColum()-1]; 
 		}
 		
 		if (cell.getRow() < ROWS-1) {
-			cells[6] = this.fields[cell.getRow()+1][cell.getColum()]; // Unterhalb der Zelle
+			cells[6] = this.fields[cell.getRow()+1][cell.getColum()]; 
 		}
 		
 		if (cell.getRow() < ROWS-1 && cell.getColum() < COLUMS-1) {
-			cells[7] = this.fields[cell.getRow()+1][cell.getColum()+1]; // Unterhalb der Zelle
+			cells[7] = this.fields[cell.getRow()+1][cell.getColum()+1]; 
 		}
 		
 		

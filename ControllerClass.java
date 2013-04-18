@@ -1,5 +1,6 @@
-import java.awt.*;
+import javax.swing.*;
 import java.awt.event.*;
+import java.awt.*;
 @SuppressWarnings("serial")
 
 /*
@@ -17,11 +18,11 @@ import java.awt.event.*;
  * 
  */
 
-public class ControllerClass extends Frame implements ActionListener {
+public class ControllerClass extends JFrame implements ActionListener {
 	public static KJMineSweeper mineSweeper;
 	public static KJNumberQuiz numberQuiz;
-	public Button mineSweeperButton = new Button("MineSweeper");
-	public Button numbersQuizButton = new Button("Zahlen raten");
+	public JButton mineSweeperButton = new JButton("MineSweeper");
+	public JButton numbersQuizButton = new JButton("Zahlen raten");
 	
 	public ControllerClass() {
 		this.addWindowListener(new WindowAdapter() {
