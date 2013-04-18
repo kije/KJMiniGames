@@ -1,12 +1,12 @@
 KJMineSweeper
 =============
 
-A little MineSweeper-Game in Java. It is a School-Project
+Some little Minigames in Java. It is a School-Project
 
-# Hirarchy
+Minigames:
+* MineSweeper
+* Number Quiz
 
-      ControllClass.java
-            ↓
-      KJMineSweeper.java
-            ↓
-      MineCell.java
+# About
+The «ControllerClass» is the entry point with it's main()-Method. From there the choosen game (it's apropriated class) will be loaden.
+
