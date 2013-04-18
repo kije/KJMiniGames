@@ -77,9 +77,9 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		System.out.println("Number of mines: "+mines+"\n");
 		
 		// Für jede Zelle die Anzahl an Mienen, die in der nähe sind, ermitteln
-		for (int i = 0; i < this.fields.length; i++) {
-			for (int j = 0; j < this.fields[i].length; j++) {
-				this.analyzeCellsArround(this.fields[i][j]);
+		for (MineCell[] row : this.fields) {
+			for (MineCell cell : row) {
+				this.analyzeCellsArround(cell);
 			}
 		}
 	}
@@ -87,11 +87,11 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		boolean doBreak = false;
 		// Den geklickten Button suchen
-		for (int i = 0; i < this.fields.length; i++) {
-			for (int j = 0; j < this.fields[i].length; j++) {
-				if (event.getSource() == this.fields[i][j]) {
+		for (MineCell[] row : this.fields) {
+			for (MineCell cell : row) {
+				if (event.getSource() == cell) {
 					doBreak = true;
-					this.didClick(this.fields[i][j]);
+					this.didClick(cell);
 					break;
 				}
 			}
@@ -183,13 +183,13 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	}
 	
 	protected void loose() {
-		for (int i = 0; i < ROWS; i++) {
-			for (int j = 0; j < COLUMS; j++) {
-				fields[i][j].setEnabled(false);
+		for (MineCell[] row : this.fields) {
+			for (MineCell cell : row) {
+				cell.setEnabled(false);
 				
 				// Zeige alle Minen
-				if (fields[i][j].isMine) {
-					fields[i][j].click(); 
+				if (cell.isMine) {
+					cell.click(); 
 				}
 			}
 		}
