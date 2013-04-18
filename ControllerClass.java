@@ -28,7 +28,7 @@ public class ControllerClass extends JFrame implements ActionListener {
 	public ControllerClass() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle("Projekt Ð Modul 103 Ð Kim Jeker");
+		setTitle("Projekt - Modul 103 - Kim Jeker");
 		
 		setLayout(new FlowLayout());
 		
