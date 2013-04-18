@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.awt.*;
 @SuppressWarnings("serial")
@@ -6,11 +7,7 @@ import java.awt.*;
 public class KJNumberQuiz extends JFrame implements ActionListener {
 
 	public KJNumberQuiz(String windowTitle) {
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) { 
-				 e.getWindow().dispose(); // Fenster schliessen
-			}
-		});
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		setTitle(windowTitle);
 		

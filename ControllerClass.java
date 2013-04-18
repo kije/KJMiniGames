@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.awt.*;
 @SuppressWarnings("serial")
@@ -25,13 +26,7 @@ public class ControllerClass extends JFrame implements ActionListener {
 	public JButton numbersQuizButton = new JButton("Zahlen raten");
 	
 	public ControllerClass() {
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) { 
-				 e.getWindow().dispose(); // Fenster schliessen
-				 System.err.println("EXIT");
-			     System.exit(0); // Programm beenden
-			}
-		});
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setTitle("Projekt Ð Modul 103 Ð Kim Jeker");
 		
@@ -55,7 +50,7 @@ public class ControllerClass extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == this.mineSweeperButton) {
-			mineSweeper = new KJMineSweeper("MineSweeper", 15, 15, 0.25);
+			mineSweeper = new KJMineSweeper("MineSweeper", 15, 15, 0.2);
 		} else if (event.getSource() == this.numbersQuizButton) {
 			// Start Number Quiz
 		}

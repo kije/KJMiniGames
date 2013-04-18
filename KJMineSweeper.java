@@ -36,13 +36,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		System.out.println("Rows: " + ROWS + "\t Colums: " + COLUMS + "\t Felder insgesammt: "+ROWS*COLUMS+ "\t Minefields Ratio: " + MINEFIELDS_TO_NORMALFIELDS_RATIO + "\t ~ number of Mines: "+(int)(ROWS*COLUMS*MINEFIELDS_TO_NORMALFIELDS_RATIO));
 		System.out.println("--------------------------------------------------------------------------------------------------------");
 		
-		// Die nächste Zeile fügt einen sogenannten «WindowListener» dem Fensterobjekt zu.
-		// In diesem Falle ist das eine anonyme Klasse, welche die Methode zum Schliessen des Fensters beinhaltet
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(final WindowEvent e) {
-				 e.getWindow().dispose(); // Fenster schliessen
-			}
-		});
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		setLayout(new GridLayout(ROWS, COLUMS));
 		

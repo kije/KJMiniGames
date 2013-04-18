@@ -9,7 +9,7 @@ public class MineCell extends JButton {
 	public boolean wasClicked = false;
 	public int numberOfMinesArround = 0;
 	public boolean checked = false;
-	public Dimension size = new Dimension(30,30);
+	public Dimension size = new Dimension(40,40);
 
 	public MineCell() {
 		super(); // Konstruktor der Superklasse aufrufen
