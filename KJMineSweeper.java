@@ -107,22 +107,44 @@ public class KJMineSweeper extends Frame implements ActionListener {
 	 * @return MineCell[]	Array mit Zellen in der Umgebung
 	 */
 	public MineCell[] getCellsArround(MineCell cell) {
-		MineCell[] cells = new MineCell[4];
+		MineCell[] cells = new MineCell[9];
+		
+		// Zellen in der Reihe oben drann
+		if (cell.getRow() > 0 && cell.getColum() > 0) {
+			cells[0] = this.fields[cell.getRow()-1][cell.getColum()-1]; 
+		} 
+		
 		if (cell.getRow() > 0) {
-			cells[0] = this.fields[cell.getRow()-1][cell.getColum()]; // Oberhalb der Zelle
+			cells[1] = this.fields[cell.getRow()-1][cell.getColum()]; 
 		} 
 		
-		if (cell.getRow() < ROWS-1) {
-			cells[1] = this.fields[cell.getRow()+1][cell.getColum()]; // Unterhalb der Zelle
+		if (cell.getRow() > 0 && cell.getColum() < COLUMS-1) {
+			cells[2] = this.fields[cell.getRow()-1][cell.getColum()+1]; 
 		} 
 		
+		 
+		// Zellen in der gleichen Reihe
 		if (cell.getColum() > 0) {
-			cells[2] = this.fields[cell.getRow()][cell.getColum()-1]; // Links von der Zelle
+			cells[3] = this.fields[cell.getRow()][cell.getColum()-1]; // Links von der Zelle
 		} 
 		
 		if (cell.getColum() < COLUMS-1) {
-			cells[3] = this.fields[cell.getRow()][cell.getColum()+1]; // Rechts von der Zelle
+			cells[4] = this.fields[cell.getRow()][cell.getColum()+1]; // Rechts von der Zelle
 		} 
+		
+		// Zellen in der Reihe unten drann
+		if (cell.getRow() < ROWS-1 && cell.getColum() > 0) {
+			cells[5] = this.fields[cell.getRow()+1][cell.getColum()-1]; // Unterhalb der Zelle
+		}
+		
+		if (cell.getRow() < ROWS-1) {
+			cells[6] = this.fields[cell.getRow()+1][cell.getColum()]; // Unterhalb der Zelle
+		}
+		
+		if (cell.getRow() < ROWS-1 && cell.getColum() < COLUMS-1) {
+			cells[7] = this.fields[cell.getRow()+1][cell.getColum()+1]; // Unterhalb der Zelle
+		}
+		
 		
 		return cells;
 	}
@@ -174,6 +196,7 @@ public class KJMineSweeper extends Frame implements ActionListener {
 		System.err.println("LOOSE!\n");
 	}
 	
+	// TODO
 	protected void win() {
 		setTitle("Gewonnen! Ð " + getTitle());
 		System.out.println("WIN!");
