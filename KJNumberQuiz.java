@@ -11,13 +11,12 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 		
 		setTitle(windowTitle);
 		
-		
 		pack();
 		setLocationRelativeTo(null); // Fenster zentrieren
 		setVisible(true);
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent event) {
 		
 	}
 

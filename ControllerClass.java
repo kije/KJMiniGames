@@ -14,8 +14,8 @@ import java.awt.*;
  * 
  * 
  * COPYRIGHT 
- * �2013 by Kim Jeker (info@kije.ch)
- * Source available on GitHub (https://github.com/kije/KJMineSweeper)
+ * ©2013 by Kim Jeker (info@kije.ch)
+ * Source available on GitHub (https://github.com/kije/KJMiniGames)
  * 
  */
 
@@ -28,16 +28,16 @@ public class ControllerClass extends JFrame implements ActionListener {
 	public ControllerClass() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle("Projekt - Modul 103 - Kim Jeker");
+		setTitle("Projekt – Modul 103 – Kim Jeker");
 		
 		setLayout(new FlowLayout());
 		
+
 		this.mineSweeperButton.addActionListener(this);
 		add(this.mineSweeperButton);
 		
 		this.numbersQuizButton.addActionListener(this);
 		add(this.numbersQuizButton);
-		
 		
 		pack();
 		setLocationRelativeTo(null); // Fenster zentrieren

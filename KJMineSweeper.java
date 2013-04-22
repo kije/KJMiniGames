@@ -9,10 +9,10 @@ import java.awt.*;
  * @author Kim Jeker
  * @extends Frame 	
  * @implements ActionListener
- * @todo Aufräumen!!!
+ * @todo Aufr?umen!!!
  */
 public class KJMineSweeper extends JFrame implements ActionListener {
-	// Quasi-«Konstanten»
+	// Quasi-?Konstanten?
 	private static int ROWS;
 	private static int COLUMS;
 	private static double MINEFIELDS_TO_NORMALFIELDS_RATIO;
@@ -22,9 +22,9 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	/**
 	 * Konstruktor
 	 * @param windowTitle	String		Titel des Fensters
-	 * @param rows			int			Wie viele «Zeilen» soll das Spielfeld haben
+	 * @param rows			int			Wie viele ¬´Zeilen¬ª soll das Spielfeld haben
 	 * @param colums		int 		Wie viele Felder soll es in einer Zeile haben
-	 * @param ratio		double			Ungefähres Verhältniss der Minenfelder zu den normalen Felder
+	 * @param ratio		double			Ungef?hres Verh√§ltniss der Minenfelder zu den normalen Felder
 	 */
 	public KJMineSweeper(String windowTitle, int rows, int colums, double ratio) {
 		ROWS = rows; 
@@ -40,24 +40,24 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		
 		setLayout(new GridLayout(ROWS, COLUMS));
 		
-		// Alle Zellen hinzufügen
+		// Alle Zellen hinzuf√ºgen
 		this.prepare();
 
 		// Fenster vorbereiten und anzeigen
 		setTitle(windowTitle);
-		pack(); // Fenster auf benötigte Grösse bringen
+		pack(); // Fenster auf ben√∂tigte Gr√∂sse bringen
 		setLocationRelativeTo(null); // Fenster zentrieren
 		setVisible(true);
 	}
 
 	/**
-	 * «Spielfeld» vorbereiten
+	 * ¬´Spielfeld¬ª vorbereiten
 	 */
 	protected void prepare() {
 		int mines = 0;
 		for (int i = 0; i < ROWS; i++) {
 			for (int j = 0; j < COLUMS; j++) {
-				this.fields[i][j] = new MineCell(); // Zelle dem Array hinzufügen, damit man später wieder darauf zugreifen kann
+				this.fields[i][j] = new MineCell(); // Zelle dem Array hinzuf?gen, damit man sp?ter wieder darauf zugreifen kann
 				this.fields[i][j].setPosition(i, j);
 				this.fields[i][j].isMine = (Math.random() <= MINEFIELDS_TO_NORMALFIELDS_RATIO ? true : false);
 				if (this.fields[i][j].isMine) {
@@ -70,7 +70,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		}
 		System.out.println("Number of mines: "+mines+"\n");
 		
-		// Für jede Zelle die Anzahl an Mienen, die in der nähe sind, ermitteln
+		// F√ºr jede Zelle die Anzahl an Mienen, die in der n√§he sind, ermitteln
 		for (MineCell[] row : this.fields) {
 			for (MineCell cell : row) {
 				this.analyzeCellsArround(cell);
@@ -145,7 +145,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Analysiert die Umgebung der Zelle und setzt deren Wert, wie viele Mienen in der nähe sind
+	 * Analysiert die Umgebung der Zelle und setzt deren Wert, wie viele Mienen in der n√§he sind
 	 * @param cell 	Die zu analysierende Zelle
 	 */
 	protected void analyzeCellsArround (MineCell cell) { 
@@ -171,7 +171,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		if (cell.isMine) {
 			this.loose();
 		} else if (cell.numberOfMinesArround == 0) {
-			// Deke alle Zellen, welche nicht in der nähe eine Miene liegen auf
+			// Deke alle Zellen, welche nicht in der n?he eine Miene liegen auf
 			showAllEmptyFieldsNearBy(cell);
 		}
 	}
@@ -187,26 +187,26 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 				}
 			}
 		}
-		setTitle("Verloren! – " + getTitle());
+		setTitle("Verloren! ‚Äì " + getTitle());
 		System.err.println("LOOSE!\n");
 	}
 	
 	// TODO
 	protected void win() {
-		setTitle("Gewonnen! – " + getTitle());
+		setTitle("Gewonnen! ‚Äì " + getTitle());
 		System.out.println("WIN!");
 	}
 	
 	/**
-	 * Diese Methode überprüft die Zellen in der Umgebung einer Zelle darauf, ob ihr numberOfMinesArround-Wert gleich 0 ist.
+	 * Diese Methode √úberpr√ºft die Zellen in der Umgebung einer Zelle darauf, ob ihr numberOfMinesArround-Wert gleich 0 ist.
 	 * Ist dies der Fall, geschehen zwei Dinge:
 	 * 1.) wird die Methode click() der Zelle aufgerufen
 	 * 2.) wird auf die Zelle noch einmal diese Methode (showAllEmptyFieldsNearBy()) aufgerufen -> Rekursion
 	 * 
-	 * @param cell	MineCell	Zelle, von der aus überprüft werden soll
+	 * @param cell	MineCell	Zelle, von der aus √ºberpr√ºft werden soll
 	 */
 	protected void showAllEmptyFieldsNearBy(MineCell cell) {
-		cell.checked = true; // Setze den checked-Wert der Zelle, damit nacher nicht immer und immer wieder die gleiche Zelle überprüft wird (und dass dann am schluss unendlich viele Fehler wirft (StackOverflow))
+		cell.checked = true; // Setze den checked-Wert der Zelle, damit nacher nicht immer und immer wieder die gleiche Zelle √ºberpr√ºft wird (und dass dann am schluss unendlich viele Fehler wirft (StackOverflow))
 		MineCell[] cellsToCheck = this.getCellsArround(cell); 
 		
 		for (int i = 0; i < cellsToCheck.length; i++) {
