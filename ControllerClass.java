@@ -5,13 +5,9 @@ import java.awt.*;
 @SuppressWarnings("serial")
 
 /*
- * INFO
- * 
- * CODING STYLE
- * 
- * 
- * AUFBAU
- * 
+ * @TODO Comments
+ * 		 Documentation
+ * 		 Clean up
  * 
  * COPYRIGHT 
  * ©2013 by Kim Jeker (info@kije.ch)
