@@ -30,7 +30,7 @@
 % 1780 CA Den Helder
 % The Netherlands
 
-\ProvidesClass{manual}[1997/02/05 v2.0 CAWCS manuals]
+\ProvidesClass{doc}[1997/02/05 v2.0 CAWCS manuals]
 
 \newcommand\@ptsize{}
 \newif\if@restonecol
