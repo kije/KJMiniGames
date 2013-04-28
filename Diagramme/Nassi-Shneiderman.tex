@@ -1,0 +1,50 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt,twoside]{doc}
+\usepackage{nassi}
+
+\hyphenation{sta-te-ment}
+\begin{document}
+
+\title{KJMiniGames Nassi-Shneiderman Diagramme}
+\author{Kim Jeker}
+\date{}
+\maketitle
+
+
+\nassiwidth=\columnwidth\setiftext {Ja }{ Nein}
+
+
+
+
+
+\STRUCT{Main}{in ControllerClass.java}{%
+  \ACTION{Konstruktor von ControllerClass aufrufen}%
+}%
+
+\STRUCT{prepare()}{in KJMineSweeper.java}{%
+	\ACTION{Z{\"a}hlervariable f{\"u}r Minen auf 0 initialisieren}%
+	 \WHILE{F{\"u}r jede "Reihe" im "Minen"-Array ...}{
+  		\WHILE{F{\"u}r jede "Zelle" in der Reihe ...}{
+			\ACTION{... Neues Feld initialisieren}%
+			\ACTION{... Positionsvariable des Feldes setzen}%
+			\ACTION{... "Pseudeo"-Zuf{\"a}llig entscheiden, ob Feld eine Mine ist und dem entsprechend dessen isMine-Variable setzen }%
+			\IF{Feld ist eine Mine}\THEN{
+				\ACTION{Erh{\"o}he Z{\"a}hlervariable f{\"u}r Minen um 1}%
+			}\ELSE{
+				\ACTION{}%
+			}\ENDIF%
+			\ACTION{Den ActionListener auf die eigene Klasse (this) setzten}%
+			\ACTION{Das Feld dem Spielfeld hinzufügen}%
+		}\ENDWHILE%
+	}\ENDWHILE%
+	\ACTION{Die Anzahl Mienen auf der Konsole ausgeben}%
+	\WHILE{F{\"u}r jede "Reihe" im "Minen"-Array ...}{
+  		\WHILE{F{\"u}r jede "Zelle" in der Reihe ...}{
+			\ACTION{... die Zellen rings herum analysieren (methode)}%
+		}\ENDWHILE%
+	}\ENDWHILE%
+}%
+
+
+\end{document}
+

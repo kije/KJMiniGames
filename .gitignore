@@ -6,3 +6,8 @@
 *.ear
 .DS_Store
 *.sublime-*
+
+# Tex-Files #
+*.synctex.gz
+*.log
+*.aux
