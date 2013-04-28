@@ -7,7 +7,6 @@
 \usepackage[ngerman]{babel}
 
 \hyphenation{sta-te-ment}
-\begin{document}
 
 \title{KJMiniGames Nassi-Shneiderman Diagramme}
 \author{Kim Jeker
@@ -17,6 +16,8 @@
 \date{\scriptsize 
 \today
 \normalsize}
+
+\begin{document}
 
 \maketitle
 
@@ -31,14 +32,14 @@
 
 
 \STRUCT{prepare()}{in KJMineSweeper.java}{%
-	\ACTION{Z\"ahlervariable f{\"u}r Minen auf 0 initialisieren}%
-	 \WHILE{F{\"u}r jede «Reihe» im «Minen»-Array ...}{
-  		\WHILE{F{\"u}r jede «Zelle» in der Reihe ...}{
+	\ACTION{Z\"ahlervariable f\"ur Minen auf 0 initialisieren}%
+	 \WHILE{F\"ur jede «Reihe» im «Minen»-Array ...}{
+  		\WHILE{F\"ur jede «Zelle» in der Reihe ...}{
 			\ACTION{… Neues Feld initialisieren}%
 			\ACTION{… Positionsvariable des Feldes setzen}%
-			\ACTION{… «Pseudeo»-Zuf{\"a}llig entscheiden, ob Feld eine Mine ist und dem entsprechend dessen isMine-Variable setzen }%
+			\ACTION{… «Pseudeo»-Zuf\"allig entscheiden, ob Feld eine Mine ist und dem entsprechend dessen isMine-Variable setzen }%
 			\IF{Feld ist eine Mine}\THEN{
-				\ACTION{Erh{\"o}he Z{\"a}hlervariable f{\"u}r Minen um 1}%
+				\ACTION{Erh\"ohe Z\"ahlervariable f\"ur Minen um 1}%
 			}\ELSE{
 				\ACTION{}%
 			}\ENDIF%
@@ -47,8 +48,8 @@
 		}\ENDWHILE%
 	}\ENDWHILE%
 	\ACTION{Die Anzahl Mienen auf der Konsole ausgeben}%
-	\WHILE{F{\"u}r jede «Reihe» im «Minen»-Array …}{
-  		\WHILE{F{\"u}r jede «Zelle» in der Reihe …}{
+	\WHILE{F\"ur jede «Reihe» im «Minen»-Array …}{
+  		\WHILE{F\"ur jede «Zelle» in der Reihe …}{
 			\ACTION{… die Felder darum analysieren (andere Methode)}%
 		}\ENDWHILE%
 	}\ENDWHILE%
