@@ -30,7 +30,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		ROWS = rows; 
 		COLUMS = colums;
 		MINEFIELDS_TO_NORMALFIELDS_RATIO = ratio;
-		this.fields = new MineCell[ROWS][COLUMS];
+		fields = new MineCell[ROWS][COLUMS];
 		
 		System.out.println("Settings");
 		System.out.println("Rows: " + ROWS + "\t Colums: " + COLUMS + "\t Felder insgesammt: "+ROWS*COLUMS+ "\t Minefields Ratio: " + MINEFIELDS_TO_NORMALFIELDS_RATIO + "\t ~ number of Mines: "+(int)(ROWS*COLUMS*MINEFIELDS_TO_NORMALFIELDS_RATIO));
@@ -41,7 +41,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		setLayout(new GridLayout(ROWS, COLUMS));
 		
 		// Alle Zellen hinzufügen
-		this.prepare();
+		prepare();
 
 		// Fenster vorbereiten und anzeigen
 		setTitle(windowTitle);
@@ -57,23 +57,23 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		int mines = 0;
 		for (int i = 0; i < ROWS; i++) {
 			for (int j = 0; j < COLUMS; j++) {
-				this.fields[i][j] = new MineCell(); // Zelle dem Array hinzuf?gen, damit man sp?ter wieder darauf zugreifen kann
-				this.fields[i][j].setPosition(i, j);
-				this.fields[i][j].isMine = (Math.random() <= MINEFIELDS_TO_NORMALFIELDS_RATIO ? true : false);
-				if (this.fields[i][j].isMine) {
+				fields[i][j] = new MineCell(); // Zelle dem Array hinzuf?gen, damit man später wieder darauf zugreifen kann
+				fields[i][j].setPosition(i, j);
+				fields[i][j].isMine = (Math.random() <= MINEFIELDS_TO_NORMALFIELDS_RATIO ? true : false);
+				if (fields[i][j].isMine) {
 					mines++;
 				}
-				this.fields[i][j].addActionListener(this);
+				fields[i][j].addActionListener(this);
 				
-				add(this.fields[i][j]);
+				add(fields[i][j]);
 			}
 		}
 		System.out.println("Number of mines: "+mines+"\n");
 		
 		// Für jede Zelle die Anzahl an Mienen, die in der nähe sind, ermitteln
-		for (MineCell[] row : this.fields) {
+		for (MineCell[] row : fields) {
 			for (MineCell cell : row) {
-				this.analyzeCellsArround(cell);
+				analyzeCellsArround(cell);
 			}
 		}
 	}
@@ -81,11 +81,11 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		boolean doBreak = false;
 		// Den geklickten Button suchen
-		for (MineCell[] row : this.fields) {
+		for (MineCell[] row : fields) {
 			for (MineCell cell : row) {
 				if (event.getSource() == cell) {
 					doBreak = true;
-					this.didClick(cell);
+					didClick(cell);
 					break;
 				}
 			}
@@ -106,38 +106,38 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		
 		// Zellen in der Reihe oben drann
 		if (cell.getRow() > 0 && cell.getColum() > 0) {
-			cells[0] = this.fields[cell.getRow()-1][cell.getColum()-1]; 
+			cells[0] = fields[cell.getRow()-1][cell.getColum()-1]; 
 		} 
 		
 		if (cell.getRow() > 0) {
-			cells[1] = this.fields[cell.getRow()-1][cell.getColum()]; 
+			cells[1] = fields[cell.getRow()-1][cell.getColum()]; 
 		} 
 		
 		if (cell.getRow() > 0 && cell.getColum() < COLUMS-1) {
-			cells[2] = this.fields[cell.getRow()-1][cell.getColum()+1]; 
+			cells[2] = fields[cell.getRow()-1][cell.getColum()+1]; 
 		} 
 		
 		 
 		// Zellen in der gleichen Reihe
 		if (cell.getColum() > 0) {
-			cells[3] = this.fields[cell.getRow()][cell.getColum()-1]; 
+			cells[3] = fields[cell.getRow()][cell.getColum()-1]; 
 		} 
 		
 		if (cell.getColum() < COLUMS-1) {
-			cells[4] = this.fields[cell.getRow()][cell.getColum()+1]; 
+			cells[4] = fields[cell.getRow()][cell.getColum()+1]; 
 		} 
 		
 		// Zellen in der Reihe unten drann
 		if (cell.getRow() < ROWS-1 && cell.getColum() > 0) {
-			cells[5] = this.fields[cell.getRow()+1][cell.getColum()-1]; 
+			cells[5] = fields[cell.getRow()+1][cell.getColum()-1]; 
 		}
 		
 		if (cell.getRow() < ROWS-1) {
-			cells[6] = this.fields[cell.getRow()+1][cell.getColum()]; 
+			cells[6] = fields[cell.getRow()+1][cell.getColum()]; 
 		}
 		
 		if (cell.getRow() < ROWS-1 && cell.getColum() < COLUMS-1) {
-			cells[7] = this.fields[cell.getRow()+1][cell.getColum()+1]; 
+			cells[7] = fields[cell.getRow()+1][cell.getColum()+1]; 
 		}
 		
 		
@@ -149,7 +149,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	 * @param cell 	Die zu analysierende Zelle
 	 */
 	protected void analyzeCellsArround (MineCell cell) { 
-		MineCell[] cellsToCheck = this.getCellsArround(cell);
+		MineCell[] cellsToCheck = getCellsArround(cell);
 		
 		for (int i = 0; i < cellsToCheck.length; i++) {
 			if (cellsToCheck[i] != null) {
@@ -169,7 +169,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		System.out.println("Cell row:" + cell.getRow() + " colum:" + cell.getColum() + "\tIs Mine: " + cell.isMine + "\t Mines arround: "+cell.numberOfMinesArround);
 		cell.click();
 		if (cell.isMine) {
-			this.loose();
+			loose();
 		} else if (cell.numberOfMinesArround == 0) {
 			// Deke alle Zellen, welche nicht in der n?he eine Miene liegen auf
 			showAllEmptyFieldsNearBy(cell);
@@ -177,7 +177,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	}
 	
 	protected void loose() {
-		for (MineCell[] row : this.fields) {
+		for (MineCell[] row : fields) {
 			for (MineCell cell : row) {
 				cell.setEnabled(false);
 				
@@ -187,13 +187,13 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 				}
 			}
 		}
-		setTitle("Verloren! – " + getTitle());
+		setTitle("Verloren! - " + getTitle());
 		System.err.println("LOOSE!\n");
 	}
 	
 	// TODO
 	protected void win() {
-		setTitle("Gewonnen! – " + getTitle());
+		setTitle("Gewonnen! - " + getTitle());
 		System.out.println("WIN!");
 	}
 	
@@ -206,8 +206,8 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	 * @param cell	MineCell	Zelle, von der aus überprüft werden soll
 	 */
 	protected void showAllEmptyFieldsNearBy(MineCell cell) {
-		cell.checked = true; // Setze den checked-Wert der Zelle, damit nacher nicht immer und immer wieder die gleiche Zelle überprüft wird (und dass dann am schluss unendlich viele Fehler wirft (StackOverflow))
-		MineCell[] cellsToCheck = this.getCellsArround(cell); 
+		cell.checked = true; // Setze den checked-Wert der Zelle, damit nacher nicht immer und immer wieder die gleiche Zelle überprüft wird (und dass dann am schluss unendlich viele Fehler wirft (StackOverflow) weil eine "Endlosschleife" erzeugt wird)
+		MineCell[] cellsToCheck = getCellsArround(cell); 
 		
 		for (int i = 0; i < cellsToCheck.length; i++) {
 			if (cellsToCheck[i] != null) {

@@ -20,24 +20,24 @@ import java.awt.*;
  */
 
 public class ControllerClass extends JFrame implements ActionListener {
-	public static KJMineSweeper mineSweeper;
-	public static KJNumberQuiz numberQuiz;
+	public KJMineSweeper mineSweeper;
+	public KJNumberQuiz numberQuiz;
 	public JButton mineSweeperButton = new JButton("MineSweeper");
 	public JButton numbersQuizButton = new JButton("Zahlen raten");
 	
 	public ControllerClass() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle("Projekt – Modul 103 – Kim Jeker");
+		setTitle("Projekt - Modul 103 - Kim Jeker");
 		
 		setLayout(new FlowLayout());
 		
 
-		this.mineSweeperButton.addActionListener(this);
-		add(this.mineSweeperButton);
+		mineSweeperButton.addActionListener(this);
+		add(mineSweeperButton);
 		
-		this.numbersQuizButton.addActionListener(this);
-		add(this.numbersQuizButton);
+		numbersQuizButton.addActionListener(this);
+		add(numbersQuizButton);
 		
 		pack();
 		setLocationRelativeTo(null); // Fenster zentrieren
@@ -49,10 +49,10 @@ public class ControllerClass extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		if (event.getSource() == this.mineSweeperButton) {
+		if (event.getSource() == mineSweeperButton) {
 			mineSweeper = new KJMineSweeper("MineSweeper", 15, 15, 0.2);
-		} else if (event.getSource() == this.numbersQuizButton) {
-			// Start Number Quiz
+		} else if (event.getSource() == numbersQuizButton) {
+			numberQuiz = new KJNumberQuiz("Number Quiz");
 		}
 	}
 }
