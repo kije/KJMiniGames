@@ -7,6 +7,7 @@ import java.awt.*;
 public class KJNumberQuiz extends JFrame implements ActionListener {
 	public JLabel infoLabel = new JLabel();
 	public JLabel messageLabel = new JLabel();
+	public JLabel tryLabel = new JLabel();
 	public JTextField inputField = new JTextField();
 	public JButton actionButton = new JButton();
 
@@ -16,7 +17,7 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 
 	public int unguessableNumber;
 
-	private int tries = 1;
+	private int tries = 0;
 
 	public KJNumberQuiz(String windowTitle) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -35,6 +36,12 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 	}
 
 	public void prepare() {
+		tries = 1;
+
+		tryLabel.setBounds(0, 0, 90, 30);
+		updateTries();
+		add(tryLabel);
+
 		infoLabel.setHorizontalAlignment(SwingConstants.CENTER); // Text Zentrieren 
 		infoLabel.setBounds(0, 20, this.getBounds().width, 30); // Label über die ganze Breite
 		generateRandomNumber();
@@ -59,20 +66,20 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 
 	}
 
+	public void updateTries() {
+		tryLabel.setText(String.format("Versuche: %d", tries));
+	}
+
 	protected void generateRandomNumber() {
-		int min = this.range[0] = (int)Math.min(Math.max(Math.pow(Math.random(),-2), 1), 40);
-		int max = (int)Math.max(Math.random()*this.factor+1, min+5);
+		int min = this.range[0] = (int)Math.min(Math.max(Math.pow(Math.random(),-2), 1), 40); // GENERATE A RANDOM NUMBER ;)
+		int max = (int)Math.max(Math.random()*this.factor+1, min+5); // GENERATE A BIGER RANDOM NUMBER ;)
 
-		unguessableNumber = (int)(Math.random()*max+min);
-
-		range[0] = min;
-		range[1] = max + min;
-
-		System.out.println(unguessableNumber);
+		generateRandomNumber(min,max);
 
 	}
 
 	protected void generateRandomNumber(int min, int max) { // Überladene Methode
+		max = max-min;
 		unguessableNumber = (int)(Math.random()*max+min);
 
 		range[0] = min;
@@ -87,7 +94,7 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 				case RETRY:
 					tries++;
 				case RUNNING:
-					if (Integer.parseInt(inputField.getText()) == unguessableNumber) {
+					if ((!inputField.getText().isEmpty()) && Integer.parseInt(inputField.getText()) == unguessableNumber) {
 						messageLabel.setForeground(Color.GREEN);
 						messageLabel.setText("Super, du hast die Zahl gefunden!");
 						actionButton.setText("Neues Spiel?");
@@ -104,6 +111,8 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 					prepare();
 					break;
 			}
+			inputField.setText("");
+			updateTries();
 		}
 	}
 
