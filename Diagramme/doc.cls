@@ -100,7 +100,7 @@
 
 \setlength\vsize{29.5cm}
 \setlength\hsize{21cm}
-\setlength\topmargin{-36\p@}
+\setlength\topmargin{-70\p@}
 \setlength\oddsidemargin{36\p@}
 \setlength\evensidemargin\z@
 \setlength\textheight{24cm}
