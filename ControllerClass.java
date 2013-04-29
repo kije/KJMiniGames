@@ -22,6 +22,11 @@ public class ControllerClass extends JFrame implements ActionListener {
 	public JButton mineSweeperButton = new JButton("MineSweeper");
 	public JButton numbersQuizButton = new JButton("Zahlen raten");
 	public JButton documentationButton = new JButton("Dokumentation");
+
+	/************* MAIN **************/
+	public static void main(String[] args) {
+		new ControllerClass();
+	}
 	
 	public ControllerClass() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,9 +50,6 @@ public class ControllerClass extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 	
-	public static void main(String[] args) {
-		new ControllerClass();
-	}
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == mineSweeperButton) {
