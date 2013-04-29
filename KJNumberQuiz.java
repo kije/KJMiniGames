@@ -38,12 +38,13 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 	public void prepare() {
 		tries = 1;
 
-		tryLabel.setBounds(0, 0, 90, 30);
+		tryLabel.setBounds(10, 0, 90, 30);
+		tryLabel.setForeground(Color.GRAY);
 		updateTries();
 		add(tryLabel);
 
 		infoLabel.setHorizontalAlignment(SwingConstants.CENTER); // Text Zentrieren 
-		infoLabel.setBounds(0, 20, this.getBounds().width, 30); // Label über die ganze Breite
+		infoLabel.setBounds(0, 40, this.getBounds().width, 30); // Label über die ganze Breite
 		generateRandomNumber();
 		infoLabel.setText(String.format("Die Zahl liegt irgendwo zwischen %d und %d!", range[0], range[1])); 
 		add(infoLabel);
