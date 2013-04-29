@@ -18,8 +18,10 @@ import java.awt.*;
 public class ControllerClass extends JFrame implements ActionListener {
 	public KJMineSweeper mineSweeper;
 	public KJNumberQuiz numberQuiz;
+	public KJMiniGamesDocumentation documentation;
 	public JButton mineSweeperButton = new JButton("MineSweeper");
 	public JButton numbersQuizButton = new JButton("Zahlen raten");
+	public JButton documentationButton = new JButton("Dokumentation");
 	
 	public ControllerClass() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +36,9 @@ public class ControllerClass extends JFrame implements ActionListener {
 		
 		numbersQuizButton.addActionListener(this);
 		add(numbersQuizButton);
+
+		documentationButton.addActionListener(this);
+		add(documentationButton);
 		
 		pack();
 		setLocationRelativeTo(null); // Fenster zentrieren
@@ -49,6 +54,8 @@ public class ControllerClass extends JFrame implements ActionListener {
 			mineSweeper = new KJMineSweeper("MineSweeper", 15, 15, 0.2);
 		} else if (event.getSource() == numbersQuizButton) {
 			numberQuiz = new KJNumberQuiz("Number Quiz");
+		} else if (event.getSource() == documentationButton) {
+			documentation = new KJMiniGamesDocumentation("Dokumentation");
 		}
 	}
 }
