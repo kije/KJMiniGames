@@ -28,6 +28,7 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 		setResizable(false); 
 		setMinimumSize(new Dimension(400,300));
 
+
 		prepare();
 
 		pack();
@@ -51,6 +52,7 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 
 		inputField.setBounds((int)(this.getBounds().width/6*1), (int)(infoLabel.getBounds().y + infoLabel.getBounds().height + 30), (int)(this.getBounds().width/3*2), 30); // Label mit jeweils 1/6 der Fensterbreite Abstand zum Rand positionieren
 		inputField.setText("");
+		inputField.setFocusCycleRoot(true); // damit von anfang an in das Feld geschrieben werden kann (das Feld hat den Focus von anfang an)
 		add(inputField);
 
 		actionButton.setBounds((int)(this.getBounds().width/6*1), (int)(inputField.getBounds().y + inputField.getBounds().height + 30), (int)(this.getBounds().width/3*2), 30);
