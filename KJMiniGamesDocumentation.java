@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.awt.*;
 @SuppressWarnings("serial")
 
+// Notice: I'm now a litte bit boring of commenting every line -.- so maybe there are funny and not serious meant comments -> look at the smileys :D
+
 public class KJMiniGamesDocumentation extends JFrame implements ActionListener {
 	public JFrame minesweeperFrame = new JFrame();
 	public JFrame numberquizFrame = new JFrame();
@@ -32,18 +34,17 @@ public class KJMiniGamesDocumentation extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	/**
-	 * 
-	 */
 	public void prepareManuals() {
 		// MINESWEEPER 
 		minesweeperFrame.setLayout(new FlowLayout());
 		minesweeperFrame.setTitle("MINESWEEPER MANUAL");
+		// Text hinzufügen (Mehrere Lables + FlowLayout = Adaptive Layout ;) )
 		minesweeperFrame.add(new JLabel("Ziel des Spiels ist es alle Bomben in dem Feld aufzudecken. ")); 
 		minesweeperFrame.add(new JLabel("Durch Klicken mit der Maus wird ein Feld aufgedeckt."));
 		minesweeperFrame.add(new JLabel("Ist dieses Feld eine Bombe, so ist das Spiel verloren.")); 
 		minesweeperFrame.add(new JLabel("Erscheint eine Zahl in einem Feld, so gibt diese an, "));
 		minesweeperFrame.add(new JLabel("wieviel Minen in den benachbarten 8 Feldern sind.")); 
+		// other booring stuff ;) 
 		minesweeperFrame.setSize(390, 150);
 		minesweeperFrame.setLocationRelativeTo(null);
 		minesweeperFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -59,6 +60,7 @@ public class KJMiniGamesDocumentation extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
+		// entsprechende Dokumentation anzeigen
 		if (event.getSource() == minesweeperButton) {
 			minesweeperFrame.setVisible(true);
 		} else if (event.getSource() == numberquizButton) {

@@ -20,16 +20,15 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 	private int tries = 0;
 
 	public KJNumberQuiz(String windowTitle) {
+		// Fenster vorbereiten
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
 		setTitle(windowTitle);
-		
 		setLayout(null); // Null-Layout
 		setResizable(false); 
 		setMinimumSize(new Dimension(400,300));
 
 
-		prepare();
+		prepare(); // Fensterinhalt hinzufügen / Spiel aufbauen
 
 		pack();
 		setLocationRelativeTo(null); // Fenster zentrieren
@@ -39,8 +38,9 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 	public void prepare() {
 		tries = 1;
 
+		// Anzeige mit den Versuchen
 		tryLabel.setBounds(10, 0, 90, 30);
-		tryLabel.setForeground(Color.GRAY);
+		tryLabel.setForeground(Color.GRAY); // Schriftfarbe setzen
 		updateTries();
 		add(tryLabel);
 
@@ -65,7 +65,7 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 		messageLabel.setText("");
 		add(messageLabel);
 
-		gameState = GameStates.RUNNING;
+		gameState = GameStates.RUNNING; // GamesState is running ;)
 
 	}
 
@@ -73,12 +73,15 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 		tryLabel.setText(String.format("Versuche: %d", tries));
 	}
 
+	// Im Folgenden wird zuerst eine Methode definiert, und dann wird diese Methode überladen (Also nochmals mit gleichem Namen aber anderen Parametern definiert)
+	// Das führt dazu, dass ich die Methode auf zwei verschiedene Arten aufrufen kann (entweder mit oder ohne Parameter)
+
 	protected void generateRandomNumber() {
+		// Weils Spass macht: Zwei unnötig komplexe Formeln für zufällige Zahlen
 		int min = this.range[0] = (int)Math.min(Math.max(Math.pow(Math.random(),-2), 1), 40); // GENERATE A RANDOM NUMBER ;)
 		int max = (int)Math.max(Math.random()*this.factor+1, min+5); // GENERATE A BIGER RANDOM NUMBER ;)
 
 		generateRandomNumber(min,max);
-
 	}
 
 	protected void generateRandomNumber(int min, int max) { // Überladene Methode

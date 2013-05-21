@@ -9,7 +9,7 @@ import java.awt.*;
  * @author Kim Jeker
  * @extends Frame 	
  * @implements ActionListener
- * @todo Aufr?umen!!!
+ * @todo Aufräumen!!!
  */
 public class KJMineSweeper extends JFrame implements ActionListener {
 	// Quasi-"Konstanten"
@@ -17,18 +17,18 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	private static int COLUMS;
 	private static double MINEFIELDS_TO_NORMALFIELDS_RATIO;
 
-	// "Statistik"
+	// "Statistik" (Zur bestimmung, ob der User gewonnen hat)
 	private int numberOfMines = 0;
 	private int numberClickedFields = 0;
 
-	protected MineCell[][] fields;
+	protected MineCell[][] fields; // 2-Dimensionales Array mit allen Feldern des Spielfelds
 
 	/**
 	 * Konstruktor
 	 * @param windowTitle	String		Titel des Fensters
 	 * @param rows			int			Wie viele «Zeilen» soll das Spielfeld haben
 	 * @param colums		int 		Wie viele Felder soll es in einer Zeile haben
-	 * @param ratio		double			Ungef?hres Verhältniss der Minenfelder zu den normalen Felder
+	 * @param ratio		double			Ungefähres Verhältniss der Minenfelder zu den normalen Felder
 	 */
 	public KJMineSweeper(String windowTitle, int rows, int colums, double ratio) {
 		ROWS = rows; 
@@ -51,25 +51,27 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		setTitle(windowTitle);
 		pack(); // Fenster auf benötigte Grösse bringen
 		setLocationRelativeTo(null); // Fenster zentrieren
-		setVisible(true);
+		setVisible(true); // anzeigen!
 	}
 
 	/**
-	 * «Spielfeld» vorbereiten
+	 * "Spielfeld" vorbereiten
 	 */
 	protected void prepare() {
 		int mines = 0;
+
+		// jede einzelen Zelle vorbereiten und hinzufügen
 		for (int i = 0; i < ROWS; i++) {
 			for (int j = 0; j < COLUMS; j++) {
-				fields[i][j] = new MineCell(); // Zelle dem Array hinzuf?gen, damit man später wieder darauf zugreifen kann
-				fields[i][j].setPosition(i, j);
-				fields[i][j].isMine = (Math.random() <= MINEFIELDS_TO_NORMALFIELDS_RATIO ? true : false);
+				fields[i][j] = new MineCell(); // Zelle dem Array hinzufügen, damit man später wieder darauf zugreifen kann
+				fields[i][j].setPosition(i, j); // setzt zwei interne Variablen der Zelle, damit man später beim analysieren der umgebung und so leichter navigieren kann
+				fields[i][j].isMine = (Math.random() <= MINEFIELDS_TO_NORMALFIELDS_RATIO ? true : false); // "Zufällig", aber abhängig vom MINEFIELDS_TO_NORMALFIELDS_RATIO entscheiden, ob Zelle eine Miene ist
 				if (fields[i][j].isMine) {
 					mines++;
 				}
-				fields[i][j].addActionListener(this);
+				fields[i][j].addActionListener(this); // ActionListener setzen
 				
-				add(fields[i][j]);
+				add(fields[i][j]); // Zelle hinzufügen
 			}
 		}
 		System.out.println("Number of mines: "+mines+"\n");
@@ -85,21 +87,25 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		boolean doBreak = false;
-		// Den geklickten Button suchen
+
+		// Das geklickte Feld suchen
 		for (MineCell[] row : fields) {
 			for (MineCell cell : row) {
 				if (event.getSource() == cell) {
 					doBreak = true;
-					didClick(cell);
-					break;
+					didClick(cell); // auf den Klick reagieren
+					
+					break; // Da nun das geklickte Feld gefunden wurde, gibt es keinen Grund mehr, die Schleife weiter laufen zu lassen
 				}
 			}
 
+			// Unschön, aber soweit mir bekann, die einzige möglichkeit, die äussere Schleife abzubrechen
 			if (doBreak) {
 				break;
 			}
 		}
 
+		// Prüfen, ob man gewonnen hat (funktioniert glaube ich nicht ;) haha)
 		if (hasWon()) {
 			win();
 		}
@@ -113,8 +119,8 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	public MineCell[] getCellsArround(MineCell cell) {
 		MineCell[] cells = new MineCell[9];
 		
-		// Zellen in der Reihe oben drann
-		if (cell.getRow() > 0 && cell.getColum() > 0) {
+		// Zellen in der Reihe oberhalb
+		if (cell.getRow() > 0 && cell.getColum() > 0) { // Diese überprüfung ist leider nötig, um zu verhindern, dass wen z. B. die Zelle an Position 0,0 geprüft wird, dann wäre ja die Zelle oben dran die Zelle mit Position -1,0, was jedoch dann ausserhalb des Arrays liegen (Wirt dann natürlich einen Fehler) -> evtl. elegantere Lösung: Exception-Handling mit try-catch
 			cells[0] = fields[cell.getRow()-1][cell.getColum()-1]; 
 		} 
 		
@@ -136,7 +142,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 			cells[4] = fields[cell.getRow()][cell.getColum()+1]; 
 		} 
 		
-		// Zellen in der Reihe unten drann
+		// Zellen in der Reihe unterhalb
 		if (cell.getRow() < ROWS-1 && cell.getColum() > 0) {
 			cells[5] = fields[cell.getRow()+1][cell.getColum()-1]; 
 		}
@@ -158,8 +164,9 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	 * @param cell 	Die zu analysierende Zelle
 	 */
 	protected void analyzeCellsArround (MineCell cell) { 
-		MineCell[] cellsToCheck = getCellsArround(cell);
+		MineCell[] cellsToCheck = getCellsArround(cell); 
 		
+		// Die Zahl, welche dann beim Klicken auf die Zelle angezeigt wird, und die Zahl der Mienen drum herum darstellt 
 		for (int i = 0; i < cellsToCheck.length; i++) {
 			if (cellsToCheck[i] != null) {
 				if (cellsToCheck[i].isMine) {
@@ -171,18 +178,17 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * 
+	 * Klick auswerten
 	 * @param cell	Zelle, auf die geklickt wurde
 	 */
 	protected void didClick(MineCell cell) {
 		System.out.println("Cell row:" + cell.getRow() + " colum:" + cell.getColum() + "\tIs Mine: " + cell.isMine + "\t Mines arround: "+cell.numberOfMinesArround);
-		cell.click();
+		cell.click(); // der Zelle mitteilen, dass sie geklickt wurde
 		if (cell.isMine) {
 			loose();
 		} else if (cell.numberOfMinesArround == 0) {
 			numberClickedFields++;
-			// Deke alle Zellen, welche nicht in der n?he eine Miene liegen auf
-			showAllEmptyFieldsNearBy(cell);
+			showAllEmptyFieldsNearBy(cell); // Deke alle Zellen, welche nicht in der nähe eine Miene liegen auf
 		}
 	}
 	
