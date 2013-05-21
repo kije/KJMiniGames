@@ -12,10 +12,14 @@ import java.awt.*;
  * @todo Aufr?umen!!!
  */
 public class KJMineSweeper extends JFrame implements ActionListener {
-	// Quasi-?Konstanten?
+	// Quasi-"Konstanten"
 	private static int ROWS;
 	private static int COLUMS;
 	private static double MINEFIELDS_TO_NORMALFIELDS_RATIO;
+
+	// "Statistik"
+	private int numberOfMines = 0;
+	private int numberClickedFields = 0;
 
 	protected MineCell[][] fields;
 
@@ -69,6 +73,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 			}
 		}
 		System.out.println("Number of mines: "+mines+"\n");
+		numberOfMines = mines;
 		
 		// Für jede Zelle die Anzahl an Mienen, die in der nähe sind, ermitteln
 		for (MineCell[] row : fields) {
@@ -93,6 +98,10 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 			if (doBreak) {
 				break;
 			}
+		}
+
+		if (hasWon()) {
+			win();
 		}
 	}
 	
@@ -171,6 +180,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		if (cell.isMine) {
 			loose();
 		} else if (cell.numberOfMinesArround == 0) {
+			numberClickedFields++;
 			// Deke alle Zellen, welche nicht in der n?he eine Miene liegen auf
 			showAllEmptyFieldsNearBy(cell);
 		}
@@ -191,8 +201,24 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 		System.err.println("LOOSE!\n");
 	}
 	
-	// TODO
+
+	protected boolean hasWon() { // Funktioniert das???
+		int totalField = ROWS*COLUMS;
+		int notMineFields = totalField-numberOfMines;
+		return (notMineFields<numberClickedFields);
+	}
+
 	protected void win() {
+		for (MineCell[] row : fields) {
+			for (MineCell cell : row) {
+				cell.setEnabled(false);
+				
+				// Zeige alle Minen
+				if (cell.isMine) {
+					cell.click(); 
+				}
+			}
+		}
 		setTitle("Gewonnen! - " + getTitle());
 		System.out.println("WIN!");
 	}
@@ -213,6 +239,7 @@ public class KJMineSweeper extends JFrame implements ActionListener {
 			if (cellsToCheck[i] != null) {
 				if (cellsToCheck[i].numberOfMinesArround == 0 && !cellsToCheck[i].isMine && !cellsToCheck[i].checked && !cellsToCheck[i].wasClicked) {
 					cellsToCheck[i].click(); // Trigger Klick
+					numberClickedFields++;
 					showAllEmptyFieldsNearBy(cellsToCheck[i]); // ACHTUNG: REKURSION !!!!!!!
 				}
 			}
