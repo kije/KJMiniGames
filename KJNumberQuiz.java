@@ -107,7 +107,7 @@ public class KJNumberQuiz extends JFrame implements ActionListener {
 						gameState = GameStates.WIN;
 					} else {
 						messageLabel.setForeground(Color.RED);
-						messageLabel.setText("Nicht ganz! Versuch es noch einmal!");
+						messageLabel.setText(String.format("Nicht ganz! Zahl zu %s! Versuch es noch einmal!", (Integer.parseInt(inputField.getText()) > unguessableNumber ? "gross" : "klein")));
 						actionButton.setText("Nochmals Raten!");
 						gameState = GameStates.RETRY;
 					}
