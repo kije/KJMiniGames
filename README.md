@@ -12,3 +12,6 @@ The «ControllerClass» is the entry point with it's main()-Method. From there t
 
 # Nassi-Shneiderman
 Nassi-Shneiderman Diagramms can be found in /Diagramme
+
+##Donate
+Bitcoin: 1HegFnKDUQnkjdLZmnkufhxh3kfWQMWBDj
